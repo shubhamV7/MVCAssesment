@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MVCAssesment.MVC.Models.Department>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Add Department", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DptName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DptName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Update", "Update", new { id=item.DeptID })
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id = item.DeptID }, new { onclick = "return confirm('Are you sure to Delete this record?');" })
+        </td>
+    </tr>
+}
+</table>
