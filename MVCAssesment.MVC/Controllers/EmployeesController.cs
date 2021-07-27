@@ -60,13 +60,18 @@ namespace MVCAssesment.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update(int employeeId, Models.Employee employee)
+        public ActionResult Update(Models.Employee employee)
         {
             if (ModelState.IsValid)
             {
-                if (employeeId == employee.EmployeeId)
+                //if salary id is not included in form data
+                if (employee.Salary.Id == 0)
                 {
-                    if (_employeeHelper.IfEmployeeExist(employeeId))
+                    return RedirectToAction("BadRequest", "CustomErrors");
+                }
+                else
+                {
+                    if (_employeeHelper.IfEmployeeExist(employee.EmployeeId))
                     {
                         _employeeHelper.UpdateEmployee(employee);
                         return RedirectToAction("Index");
@@ -75,10 +80,6 @@ namespace MVCAssesment.MVC.Controllers
                     {
                         return RedirectToAction("NotFound", "CustomErrors");
                     }
-                }
-                else
-                {
-                    return RedirectToAction("BadRequest", "CustomErrors");
                 }
             }
 

@@ -59,25 +59,18 @@ namespace MVCAssesment.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update(int deptId, Models.Department department)
+        public ActionResult Update(Models.Department department)
         {
             if (ModelState.IsValid)
             {
-                if (deptId == department.DeptID)
+                if (_departmentHelper.IfDepartmentExist(department.DeptID))
                 {
-                    if (_departmentHelper.IfDepartmentExist(deptId))
-                    {
-                        _departmentHelper.UpdateDepartment(department);
-                        return RedirectToAction("Index");
-                    }
-                    else
-                    {
-                        return RedirectToAction("NotFound", "CustomErrors");
-                    }
+                    _departmentHelper.UpdateDepartment(department);
+                    return RedirectToAction("Index");
                 }
                 else
                 {
-                    return RedirectToAction("BadRequest", "CustomErrors");
+                    return RedirectToAction("NotFound", "CustomErrors");
                 }
             }
 
