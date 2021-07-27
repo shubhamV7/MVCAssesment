@@ -22,6 +22,13 @@ namespace MVCAssesment.MVC.Controllers
             return View(employees);
         }
 
+        //show list with rank
+        public ActionResult Index2()
+        {
+            var employees = _employeeHelper.GetEmployees();
+            return View(employees);
+        }
+
         public ActionResult Create()
         {
             ViewBag.Departments = _departmentHelper.GetDepartments();
