@@ -15,7 +15,7 @@ namespace MVCAssesment.MVC
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             //It will update the database to latest migration on project startup
-            //Database.SetInitializer<Models.DBContext>(new MigrateDatabaseToLatestVersion<Models.DBContext, Migrations.Configuration>());
+            Database.SetInitializer<Models.DBContext>(new MigrateDatabaseToLatestVersion<Models.DBContext, Migrations.Configuration>());
 
         }
     }
