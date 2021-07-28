@@ -22,17 +22,15 @@ namespace MVCAssesment.MVC.ModelHelpers
             return employees;
         }
 
-
-
         public IEnumerable<EmployeeSalaryDeptIndex> GetEmployeesOrderBySalaryDesc()
         {
             var employees = new List<EmployeeSalaryDeptIndex>();
 
             using (DBContext dBContext = new DBContext())
             {
-                //Linq query optimized 
-                employees = dBContext.Employees.Select(e => new EmployeeSalaryDeptIndex() 
-                                                { 
+                //Linq query optimized
+                employees = dBContext.Employees.Select(e => new EmployeeSalaryDeptIndex()
+                                                {
                                                     EmployeeId = e.EmployeeId,
                                                     Name = e.Name,
                                                     DOJ = e.DOJ,
@@ -49,7 +47,6 @@ namespace MVCAssesment.MVC.ModelHelpers
 
             return employees;
         }
-
 
         public Employee GetEmployee(int id)
         {

@@ -7,6 +7,7 @@ namespace MVCAssesment.MVC.ModelHelpers
     public interface IEmployeeHelper
     {
         IEnumerable<Employee> GetEmployees();
+
         IEnumerable<EmployeeSalaryDeptIndex> GetEmployeesOrderBySalaryDesc();
 
         Employee GetEmployee(int id);

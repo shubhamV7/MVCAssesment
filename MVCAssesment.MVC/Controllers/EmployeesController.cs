@@ -29,10 +29,9 @@ namespace MVCAssesment.MVC.Controllers
         public ActionResult Index2()
         {
             var employees = _employeeHelper.GetEmployeesOrderBySalaryDesc();
-            
+
             return View(employees);
         }
-
 
         public ActionResult Create()
         {
