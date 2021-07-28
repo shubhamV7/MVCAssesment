@@ -1,4 +1,5 @@
 ﻿using MVCAssesment.MVC.Models;
+using MVCAssesment.MVC.ViewModels;
 using System.Collections.Generic;
 
 namespace MVCAssesment.MVC.ModelHelpers
@@ -6,6 +7,7 @@ namespace MVCAssesment.MVC.ModelHelpers
     public interface IEmployeeHelper
     {
         IEnumerable<Employee> GetEmployees();
+        IEnumerable<EmployeeSalaryDeptIndex> GetEmployeesOrderBySalaryDesc();
 
         Employee GetEmployee(int id);
 

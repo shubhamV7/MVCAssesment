@@ -1,4 +1,5 @@
 ﻿using MVCAssesment.MVC.Models;
+using MVCAssesment.MVC.ViewModels;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -15,13 +16,40 @@ namespace MVCAssesment.MVC.ModelHelpers
             {
                 employees = dBContext.Employees.Include(e => e.Department)
                                                .Include(e => e.Salary)
-                                               .OrderByDescending(e => e.Salary.SalaryAmount)
+                                               .ToList();
+            }
+
+            return employees;
+        }
+
+
+
+        public IEnumerable<EmployeeSalaryDeptIndex> GetEmployeesOrderBySalaryDesc()
+        {
+            var employees = new List<EmployeeSalaryDeptIndex>();
+
+            using (DBContext dBContext = new DBContext())
+            {
+                //Linq query optimized 
+                employees = dBContext.Employees.Select(e => new EmployeeSalaryDeptIndex() 
+                                                { 
+                                                    EmployeeId = e.EmployeeId,
+                                                    Name = e.Name,
+                                                    DOJ = e.DOJ,
+                                                    Mobile = e.Mobile,
+                                                    Email = e.Email,
+                                                    Address = e.Address,
+                                                    DepartmentName = e.Department.DptName,
+                                                    SalaryAmount = e.Salary.SalaryAmount
+                                                })
+                                               .OrderByDescending(e => e.SalaryAmount)
                                                .ThenBy(e => e.Name)
                                                .ToList();
             }
 
             return employees;
         }
+
 
         public Employee GetEmployee(int id)
         {

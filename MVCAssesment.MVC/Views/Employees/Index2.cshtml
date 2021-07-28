@@ -1,13 +1,12 @@
-﻿@model IEnumerable<MVCAssesment.MVC.Models.Employee>
+﻿@model IEnumerable<MVCAssesment.MVC.ViewModels.EmployeeSalaryDeptIndex>
 
 @{
-    ViewBag.Title = "List2";
+    ViewBag.Title = "Employee List";
     int rank = 0;
     decimal prevSal = 0;
-
 }
 
-<h2>Employees</h2>
+<h2>Index3</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -17,6 +16,7 @@
         <th>
             Rank
         </th>
+
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
@@ -33,21 +33,21 @@
             @Html.DisplayNameFor(model => model.Address)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Department.DptName)
+            @Html.DisplayNameFor(model => model.DepartmentName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Salary.SalaryAmount)
+            @Html.DisplayNameFor(model => model.SalaryAmount)
         </th>
-        <th>Update Employee</th>
-        <th>Delete Employee</th>
+        <th>Update</th>
+        <th>Delete</th>
     </tr>
 
     @foreach (var item in Model)
     {
-        if (item.Salary.SalaryAmount != prevSal)
+        if (item.SalaryAmount != prevSal)
         {
             ++rank;
-            prevSal = item.Salary.SalaryAmount;
+            prevSal = item.SalaryAmount;
         }
 
         <tr>
@@ -70,10 +70,10 @@
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Department.DptName)
+                @Html.DisplayFor(modelItem => item.DepartmentName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Salary.SalaryAmount)
+                @Html.DisplayFor(modelItem => item.SalaryAmount)
             </td>
             <td>
                 @Html.ActionLink("Update", "Update", new { id = item.EmployeeId })
@@ -83,4 +83,5 @@
             </td>
         </tr>
     }
+
 </table>

@@ -1,4 +1,5 @@
 ﻿using MVCAssesment.MVC.ModelHelpers;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace MVCAssesment.MVC.Controllers
@@ -19,15 +20,19 @@ namespace MVCAssesment.MVC.Controllers
         public ActionResult Index()
         {
             var employees = _employeeHelper.GetEmployees();
-            return View(employees);
+            var orderedList = employees.OrderByDescending(e => e.Salary.SalaryAmount)
+                                       .ThenBy(e => e.Name).ToList();
+            return View(orderedList);
         }
 
         //show list with rank
         public ActionResult Index2()
         {
-            var employees = _employeeHelper.GetEmployees();
+            var employees = _employeeHelper.GetEmployeesOrderBySalaryDesc();
+            
             return View(employees);
         }
+
 
         public ActionResult Create()
         {
