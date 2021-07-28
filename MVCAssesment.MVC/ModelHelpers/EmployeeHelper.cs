@@ -31,17 +31,12 @@ namespace MVCAssesment.MVC.ModelHelpers
                 //Linq query optimized
                 employees = dBContext.Employees.Select(e => new EmployeeSalaryDeptIndex()
                                                 {
-                                                    EmployeeId = e.EmployeeId,
-                                                    Name = e.Name,
-                                                    DOJ = e.DOJ,
-                                                    Mobile = e.Mobile,
-                                                    Email = e.Email,
-                                                    Address = e.Address,
+                                                    Employee = e,
                                                     DepartmentName = e.Department.DptName,
                                                     SalaryAmount = e.Salary.SalaryAmount
                                                 })
                                                .OrderByDescending(e => e.SalaryAmount)
-                                               .ThenBy(e => e.Name)
+                                               .ThenBy(e => e.Employee.Name)
                                                .ToList();
             }
 

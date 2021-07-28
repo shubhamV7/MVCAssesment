@@ -1,28 +1,17 @@
-﻿using System;
+﻿using MVCAssesment.MVC.Models;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace MVCAssesment.MVC.ViewModels
 {
     public class EmployeeSalaryDeptIndex
     {
-        public int EmployeeId { get; set; }
+        public Employee Employee { get; set; }
 
-        public string Name { get; set; }
-
-        [Display(Name = "Date of Joining")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime DOJ { get; set; }
-
-        public string Mobile { get; set; }
-
-        [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
-
-        public string Address { get; set; }
-
-        [Display(Name = "Department")]
+        [Display(Name = "Department Name")]
         public string DepartmentName { get; set; }
 
+        [Display(Name = "Salary Amount")]
         public decimal SalaryAmount { get; set; }
     }
 }
