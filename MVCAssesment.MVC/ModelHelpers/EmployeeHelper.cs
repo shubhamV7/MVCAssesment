@@ -19,7 +19,10 @@ namespace MVCAssesment.MVC.ModelHelpers
                                                .ToList();
             }
 
-            return employees;
+
+            var ordered = employees.OrderByDescending(e => e.Salary.SalaryAmount)
+                                       .ThenBy(e => e.Name).ToList();
+            return ordered;
         }
 
         public IEnumerable<EmployeeSalaryDeptIndex> GetEmployeesOrderBySalaryDesc()

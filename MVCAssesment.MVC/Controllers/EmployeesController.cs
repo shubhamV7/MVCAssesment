@@ -20,9 +20,7 @@ namespace MVCAssesment.MVC.Controllers
         public ActionResult Index()
         {
             var employees = _employeeHelper.GetEmployees();
-            var orderedList = employees.OrderByDescending(e => e.Salary.SalaryAmount)
-                                       .ThenBy(e => e.Name).ToList();
-            return View(orderedList);
+            return View(employees);
         }
 
         //show list with rank
