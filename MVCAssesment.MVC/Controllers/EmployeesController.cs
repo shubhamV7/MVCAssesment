@@ -1,4 +1,7 @@
 ﻿using MVCAssesment.MVC.ModelHelpers;
+using MVCAssesment.MVC.Models;
+using MVCAssesment.MVC.ViewModels;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -8,28 +11,33 @@ namespace MVCAssesment.MVC.Controllers
     public class EmployeesController : Controller
     {
         private IEmployeeHelper _employeeHelper;
+        private IEmployeeHelperSQL _employeeHelperSql;
         private IDepartmentHelper _departmentHelper;
 
         public EmployeesController()
         {
             _employeeHelper = HelperFactory.GetEmployeeHelper();
+            _employeeHelperSql = HelperFactory.GetEmployeeHelperSQL();
             _departmentHelper = HelperFactory.GetDepartmentHelper();
         }
 
-        // GET: Employees
+        //show list with rank
         public ActionResult Index()
         {
-            var employees = _employeeHelper.GetEmployees();
+            IEnumerable<EmployeeSalaryDeptIndex> employees = _employeeHelperSql.GetEmployeeWithRank();
+
             return View(employees);
         }
 
-        //show list with rank
+        // GET: Employees
         public ActionResult Index2()
         {
-            var employees = _employeeHelper.GetEmployeesOrderBySalaryDesc();
+            IEnumerable<Employee> employees = _employeeHelper.GetEmployees();
 
             return View(employees);
         }
+
+        
 
         public ActionResult Create()
         {

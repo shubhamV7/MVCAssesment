@@ -8,8 +8,6 @@ namespace MVCAssesment.MVC.ModelHelpers
     {
         IEnumerable<Employee> GetEmployees();
 
-        IEnumerable<EmployeeSalaryDeptIndex> GetEmployeesOrderBySalaryDesc();
-
         Employee GetEmployee(int id);
 
         bool IfEmployeeExist(int id);

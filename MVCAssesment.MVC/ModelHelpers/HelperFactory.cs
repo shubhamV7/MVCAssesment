@@ -14,5 +14,10 @@ namespace MVCAssesment.MVC.ModelHelpers
         {
             return new EmployeeHelper();
         }
+
+        public static IEmployeeHelperSQL GetEmployeeHelperSQL()
+        {
+            return new EmployeeHelperSQL();
+        }
     }
 }

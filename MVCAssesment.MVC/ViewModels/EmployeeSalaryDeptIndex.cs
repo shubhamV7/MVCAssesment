@@ -13,5 +13,6 @@ namespace MVCAssesment.MVC.ViewModels
 
         [Display(Name = "Salary Amount")]
         public decimal SalaryAmount { get; set; }
+        public int Rank { get; set; }
     }
 }
